@@ -1,6 +1,10 @@
-function Title() {
+interface Props {
+    content: string;
+}
+
+function Title({ content }: Props) {
     return (
-        <h2 className="text-center">Title</h2>
+        <h2 className="text-center">{content}</h2>
     );
 }
 
