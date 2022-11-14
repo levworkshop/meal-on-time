@@ -1,7 +1,17 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Card from "../../components/Card";
 import Title from "../../components/Title";
 import './Home.css';
+
+interface CardType {
+    id: number;
+    name: string;
+    price: number;
+    description: string;
+    image: string;
+    category: string;
+    rating: number;
+}
 
 function Home() {
     const data = [
@@ -34,7 +44,27 @@ function Home() {
         }
     ];
 
+    const catgories = ['All', 'Vegeterian', 'Asian', 'Chicken'];
+
     const [display, setDisplay] = useState('grid');
+    const [selectdCategory, setSelectdCategory] = useState('All');
+    const [filtered, setFiltered] = useState([...data]);
+
+    function filterByCategory(category: string, cards: Array<CardType>): Array<CardType> {
+        if (category === 'All') {
+            return cards;
+        }
+
+        return cards.filter(card => card.category === category);
+    }
+
+    function handleCategoryChange(e: React.ChangeEvent<HTMLSelectElement>) {
+        const value = e.target.value;
+        const filteredData = filterByCategory(value, [...data]);
+
+        setSelectdCategory(value);
+        setFiltered(filteredData);
+    }
 
     // function handleDisplayClick(displayType: string) {
     //     setDisplay(displayType);
@@ -58,11 +88,31 @@ function Home() {
                 >
                     <i className="bi-list-ul"></i>
                 </button>
+
+                <div>
+                    <label>Category:</label>
+                    <select
+                        value={selectdCategory}
+                        onChange={handleCategoryChange}
+                        className="form-select"
+                    >
+                        {
+                            catgories.map(category =>
+                                <option
+                                    key={category}
+                                    value={category}
+                                >
+                                    {category}
+                                </option>
+                            )
+                        }
+                    </select>
+                </div>
             </div>
 
             <div className={`${display} p-5`}>
                 {
-                    data.map(card =>
+                    filtered.map(card =>
                         <Card
                             key={card.id}
                             {...card}
