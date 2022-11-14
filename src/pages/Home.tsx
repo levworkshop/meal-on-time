@@ -33,34 +33,12 @@ function Home() {
                     data.map(card =>
                         <Card
                             key={card.id}
-                            name={card.name}
-                            price={card.price}
-                            description={card.description}
-                            image={card.image}
-                            category={card.category}
-                            rating={card.rating}
+                            {...card}
                         />
                     )
                 }
 
-                {/* <Card
-                    name="Greek Salad"
-                    price={30.5}
-                    description="Great salad..."
-                    image="https://cdn.pixabay.com/photo/2016/08/09/10/30/tomatoes-1580273__340.jpg"
-                    category="Vegeterian"
-                    rating={4}
-                />
-
-                <Card
-                    name="Pad Thai"
-                    price={42}
-                    description="Yumi yumi"
-                    image="https://cdn.pixabay.com/photo/2017/02/25/15/23/pad-thai-2098017__340.jpg"
-                    category="Asian"
-                    rating={5}
-                />
-
+                {/* 
                 <Card
                     name="Fried Chicken"
                     price={98.60}
