@@ -1,5 +1,7 @@
-import Card from "../components/Card";
-import Title from "../components/Title";
+import { useState } from "react";
+import Card from "../../components/Card";
+import Title from "../../components/Title";
+import './Home.css';
 
 function Home() {
     const data = [
@@ -32,11 +34,33 @@ function Home() {
         }
     ];
 
+    const [display, setDisplay] = useState('grid');
+
+    // function handleDisplayClick(displayType: string) {
+    //     setDisplay(displayType);
+    // }
+
     return (
         <>
             <Title content="Order Delivery Or Takeaway" />
 
-            <div className="d-flex justify-content-around p-5">
+            <div>
+                <button
+                    onClick={() => setDisplay('grid')}
+                    className="btn btn-light mx-1"
+                >
+                    <i className="bi-grid-3x3-gap-fill"></i>
+                </button>
+
+                <button
+                    onClick={() => setDisplay('list')}
+                    className="btn btn-light"
+                >
+                    <i className="bi-list-ul"></i>
+                </button>
+            </div>
+
+            <div className={`${display} p-5`}>
                 {
                     data.map(card =>
                         <Card
