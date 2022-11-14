@@ -24,7 +24,7 @@ function Card({
     }
 
     return (
-        <div className="card">
+        <div className="card m-4">
             <img src={image} className="card-img-top" alt={name} />
             <div
                 onClick={() => handleCategoryClick(category)}
