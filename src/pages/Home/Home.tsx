@@ -13,6 +13,14 @@ interface CardType {
     rating: number;
 }
 
+enum Categories {
+    all = 'All',
+    vegeterian = 'Vegeterian',
+    chicken = 'Chicken',
+    asian = 'Asian'
+
+}
+
 function Home() {
     const data = [
         {
@@ -44,14 +52,14 @@ function Home() {
         }
     ];
 
-    const catgories = ['All', 'Vegeterian', 'Asian', 'Chicken'];
+    const catgories = Object.values(Categories); //['All', 'Vegeterian', 'Asian', 'Chicken'];
 
     const [display, setDisplay] = useState('grid');
-    const [selectdCategory, setSelectdCategory] = useState('All');
+    const [selectdCategory, setSelectdCategory] = useState(Categories.all);
     const [filtered, setFiltered] = useState([...data]);
 
-    function filterByCategory(category: string, cards: Array<CardType>): Array<CardType> {
-        if (category === 'All') {
+    function filterByCategory(category: Categories, cards: Array<CardType>): Array<CardType> {
+        if (category === Categories.all) {
             return cards;
         }
 
@@ -59,7 +67,7 @@ function Home() {
     }
 
     function handleCategoryChange(e: React.ChangeEvent<HTMLSelectElement>) {
-        const value = e.target.value;
+        const value = e.target.value as Categories;
         const filteredData = filterByCategory(value, [...data]);
 
         setSelectdCategory(value);
