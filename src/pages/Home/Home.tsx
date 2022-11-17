@@ -51,6 +51,8 @@ function Home() {
         }
     ];
 
+    // const data: Array<CardType> = [];
+
     const catgories = Object.values(Categories);
 
     const [display, setDisplay] = useState('grid');
@@ -90,6 +92,8 @@ function Home() {
         setSearch(value);
         setFiltered(result);
     }
+
+    if (data.length === 0) return <p>No dishes in menu</p>;
 
     return (
         <>
@@ -141,16 +145,24 @@ function Home() {
                 </div>
             </div>
 
-            <div className={`${display} p-5`}>
-                {
-                    filtered.map(card =>
-                        <Card
-                            key={card.id}
-                            {...card}
-                        />
+            {
+                filtered.length === 0 ?
+                    (<p>No dishes to disaplay</p>)
+                    :
+                    (
+                        <div className={`${display} p-5`}>
+                            {
+                                filtered.map(card =>
+                                    <Card
+                                        key={card.id}
+                                        {...card}
+                                    />
+                                )
+                            }
+                        </div>
                     )
-                }
-            </div>
+            }
+
         </>
     );
 }
