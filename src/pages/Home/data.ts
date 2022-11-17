@@ -1,3 +1,5 @@
+import { Categories } from "./types";
+
 export const data = [
     {
         id: 1,
@@ -5,7 +7,7 @@ export const data = [
         price: 30.5,
         description: "Great salad...",
         image: "https://cdn.pixabay.com/photo/2016/08/09/10/30/,tomatoes-1580273__340.jpg",
-        category: "Vegeterian",
+        category: Categories.vegeterian,
         rating: 4
     },
     {
@@ -14,7 +16,7 @@ export const data = [
         price: 42,
         description: "Yumi yumi",
         image: "https://cdn.pixabay.com/photo/2017/02/25/15/23/pad-thai-2098017__340.jpg",
-        category: "Asian",
+        category: Categories.asian,
         rating: 5
     },
     {
@@ -23,7 +25,7 @@ export const data = [
         price: 98.60,
         description: "I like it",
         image: "https://cdn.pixabay.com/photo/2016/07/31/17/51/chicken-1559548__340.jpg",
-        category: "Chicken",
+        category: Categories.chicken,
         rating: 3
     }
 ];

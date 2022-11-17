@@ -4,7 +4,7 @@ export interface CardType {
     price: number;
     description: string;
     image: string;
-    category: string;
+    category: Categories;
     rating: number;
 }
 
