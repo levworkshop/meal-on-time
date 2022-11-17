@@ -76,7 +76,7 @@ function Home() {
     }
 
     function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
-        const value = e.target.value;
+        const value = e.target.value.trim();
         let result = [...data];
 
         if (value.length > 0) {
