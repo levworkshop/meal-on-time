@@ -25,6 +25,10 @@ function Home() {
 
     function handleCategoryChange(e: React.ChangeEvent<HTMLSelectElement>) {
         const value = e.target.value as Categories;
+        categoryChange(value);
+    }
+
+    function categoryChange(value: Categories) {
         const filteredData = filterByCategory(value, [...data]);
 
         setSelectdCategory(value);
@@ -111,6 +115,7 @@ function Home() {
                                     <Card
                                         key={card.id}
                                         {...card}
+                                        categoryClick={categoryChange}
                                     />
                                 )
                             }

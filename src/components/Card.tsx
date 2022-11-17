@@ -5,6 +5,7 @@ interface Props {
     image: string;
     category: string;
     rating: number;
+    categoryClick: Function;
 }
 
 function Card({
@@ -13,21 +14,22 @@ function Card({
     description,
     image,
     category,
-    rating }: Props) {
+    rating,
+    categoryClick }: Props) {
 
     function handleClick(name: string) {
         console.log(`Selected dish: ${name}`);
     }
 
-    function handleCategoryClick(name: string) {
-        console.log(`Selected category: ${name}`);
-    }
+    // function handleCategoryClick(name: string) {
+    //     console.log(`Selected category: ${name}`);
+    // }
 
     return (
         <div className="card m-4">
             <img src={image} className="card-img-top" alt={name} />
             <div
-                onClick={() => handleCategoryClick(category)}
+                onClick={() => categoryClick(category)}
                 className="badge text-bg-info">
                 {category}
             </div>
