@@ -30,7 +30,6 @@ function Home() {
 
     function categoryChange(value: Categories) {
         const filteredData = filterByCategory(value, [...data]);
-
         setSelectdCategory(value);
         setSearch('');
         setFiltered(filteredData);

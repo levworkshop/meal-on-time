@@ -21,10 +21,6 @@ function Card({
         console.log(`Selected dish: ${name}`);
     }
 
-    // function handleCategoryClick(name: string) {
-    //     console.log(`Selected category: ${name}`);
-    // }
-
     return (
         <div className="card m-4">
             <img src={image} className="card-img-top" alt={name} />
