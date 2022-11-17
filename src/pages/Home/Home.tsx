@@ -18,7 +18,6 @@ enum Categories {
     vegeterian = 'Vegeterian',
     chicken = 'Chicken',
     asian = 'Asian'
-
 }
 
 function Home() {
@@ -52,11 +51,12 @@ function Home() {
         }
     ];
 
-    const catgories = Object.values(Categories); //['All', 'Vegeterian', 'Asian', 'Chicken'];
+    const catgories = Object.values(Categories);
 
     const [display, setDisplay] = useState('grid');
     const [selectdCategory, setSelectdCategory] = useState(Categories.all);
     const [filtered, setFiltered] = useState([...data]);
+    const [search, setSearch] = useState('');
 
     function filterByCategory(category: Categories, cards: Array<CardType>): Array<CardType> {
         if (category === Categories.all) {
@@ -71,7 +71,23 @@ function Home() {
         const filteredData = filterByCategory(value, [...data]);
 
         setSelectdCategory(value);
+        setSearch('');
         setFiltered(filteredData);
+    }
+
+    function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
+        const value = e.target.value;
+        let result = [...data];
+
+        if (value.length > 0) {
+            result = [...data].filter(card =>
+                card.name.toLowerCase().includes(value.toLowerCase())
+            )
+        }
+
+        setSelectdCategory(Categories.all);
+        setSearch(value);
+        setFiltered(result);
     }
 
     return (
@@ -114,6 +130,13 @@ function Home() {
                             )
                         }
                     </select>
+
+                    <input
+                        value={search}
+                        onChange={(e) => handleSearch(e)}
+                        placeholder="Search"
+                        className="form-control ms-3"
+                    />
                 </div>
             </div>
 
