@@ -4,7 +4,7 @@ function Header() {
     return (
         <nav className="navbar navbar-dark bg-dark">
             <div className="container-fluid">
-                <a className="navbar-brand" href="http://localhost:3000/">
+                <a className="navbar-brand" href="/">
                     <i className="bi-cup-hot me-2"></i>
                     Meal On Time
                 </a>
