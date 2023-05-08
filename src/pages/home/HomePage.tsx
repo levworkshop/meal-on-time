@@ -64,8 +64,7 @@ function HomePage() {
         setCards(filtered);
     }
 
-    function handleCategoryChange(e: React.ChangeEvent<HTMLSelectElement>) {
-        const value = e.target.value as Category;
+    function handleCategoryChange(value: Category) {
         setSelectedCategory(value);
 
         if (value === Category.all) {
@@ -107,7 +106,7 @@ function HomePage() {
 
                     <select
                         value={selectedCategory}
-                        onChange={handleCategoryChange}
+                        onChange={(e) => handleCategoryChange(e.target.value as Category)}
                         className="form-select"
                     >
                         {categories.map(category =>
@@ -143,6 +142,7 @@ function HomePage() {
                             price={cardItem.price}
                             rating={cardItem.rating}
                             category={cardItem.category}
+                            onCategoryChange={handleCategoryChange}
                         >
                             {cardItem.rating === 5 &&
                                 <p className="card-text bg-warning p-2">

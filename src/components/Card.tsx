@@ -19,6 +19,7 @@ export interface CardProps {
 
 interface Props extends CardProps {
     children: React.ReactNode;
+    onCategoryChange: Function;
 }
 
 function Card({
@@ -29,13 +30,18 @@ function Card({
     rating,
     category,
     children,
+    onCategoryChange,
 }: Props) {
     const [total, setTotal] = useState(price * 1.17);
 
     return (
         <div className="card m-3">
             <img src={image} className="card-img-top" alt="" />
-            <div className="badge text-bg-info">
+
+            <div
+                onClick={() => onCategoryChange(category)}
+                className="badge text-bg-info"
+            >
                 {category}
             </div>
 
