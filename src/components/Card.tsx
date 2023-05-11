@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export enum Category {
     all = 'All',
@@ -58,9 +59,9 @@ function Card({
 
                 {children}
 
-                <a href="#" className="btn btn-primary">
-                    Go somewhere
-                </a>
+                <Link to="/details" className="btn btn-primary">
+                    Details
+                </Link>
             </div>
         </div>
     );
