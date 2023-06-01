@@ -1,6 +1,6 @@
 import Title from "../../components/Title";
 import Card, { CardProps, Category } from "../../components/Card";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './HomePage.css';
 
 // const data: Array<CardProps> = [];
@@ -41,6 +41,13 @@ function HomePage() {
     const [search, setSearch] = useState('');
     const [cards, setCards] = useState([...data]);
     const [displayMode, setDisplayMode] = useState('grid');
+
+    useEffect(() => {
+        fetch('http://localhost:3000/dishes')
+            .then(res => JSON.stringify(res))
+            .then(json => console.log(json)
+            )
+    }, [])
 
     function handleDisplayChange(mode: string) {
         setDisplayMode(mode);
