@@ -11,6 +11,11 @@ function Header() {
 
                 <ul className="navbar-nav flex-row">
                     <li className="nav-item me-3">
+                        <NavLink to="/add-dish" className="nav-link">
+                            Add Dish
+                        </NavLink>
+                    </li>
+                    <li className="nav-item me-3">
                         <NavLink to="/about" className="nav-link">
                             About
                         </NavLink>
