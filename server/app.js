@@ -21,6 +21,6 @@ app.use(headers);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/dishes', dishesRouter);
-app.use('/categories', dishesCategories);
+app.use('/categories', categoriesRouter);
 
 module.exports = app;

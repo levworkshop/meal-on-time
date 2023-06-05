@@ -1,12 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useInputText } from "../hooks/useInputText";
+
+export interface ICategory {
+    id: number;
+    name: string;
+}
 
 function AddDishPage() {
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
+    // const [name, setName] = useState('');
+    const nameProps = useInputText('');
+    // const [description, setDescription] = useState('');
+    const descriptionProps = useInputText('');
     const [price, setPrice] = useState(0);
     const [rating, setRating] = useState(1);
-    const [image, setImage] = useState('');
+    // const [image, setImage] = useState('');
+    const imageProps = useInputText('');
+    const [categories, setCategories] = useState<Array<ICategory>>([]);
     const [categoryId, setCategoryId] = useState(0);
+
+    const getCategories = async (): Promise<Array<ICategory>> => {
+        const res = await fetch('http://localhost:3000/categories');
+        return res.json();
+    }
+
+    useEffect(() => {
+        getCategories()
+            .then(res => {
+                setCategories(res)
+            })
+    }, [])
 
     return (
         <div className="m-4">
@@ -20,8 +42,7 @@ function AddDishPage() {
                     <input
                         type="text"
                         className="form-control me-3"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        {...nameProps}
                     />
                 </div>
             </div>
@@ -35,8 +56,7 @@ function AddDishPage() {
                     <input
                         type="text"
                         className="form-control me-3"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
+                        {...descriptionProps}
                     />
                 </div>
             </div>
@@ -80,8 +100,7 @@ function AddDishPage() {
                     <input
                         type="text"
                         className="form-control me-3"
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
+                        {...imageProps}
                     />
                 </div>
             </div>
@@ -92,12 +111,19 @@ function AddDishPage() {
                     >
                         Category
                     </label>
-                    <input
-                        type="text"
-                        className="form-control me-3"
+                    <select
                         value={categoryId}
                         onChange={(e) => setCategoryId(+e.target.value)}
-                    />
+                    >
+                        {
+                            categories.map(category =>
+                                <option
+                                    key={category.id}
+                                    value={category.id}
+                                >{category.name}</option>
+                            )
+                        }
+                    </select>
                 </div>
             </div>
 
