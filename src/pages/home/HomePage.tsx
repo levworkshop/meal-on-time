@@ -2,6 +2,7 @@ import Title from "../../components/Title";
 import Card, { CardProps, Category } from "../../components/Card";
 import React, { useEffect, useState } from "react";
 import './HomePage.css';
+import { useFetchGet } from "../../hooks/useFetchGet";
 
 // const data: Array<CardProps> = [];
 
@@ -41,13 +42,7 @@ function HomePage() {
     const [search, setSearch] = useState('');
     const [cards, setCards] = useState([...data]);
     const [displayMode, setDisplayMode] = useState('grid');
-
-    useEffect(() => {
-        fetch('http://localhost:3000/dishes')
-            .then(res => JSON.stringify(res))
-            .then(json => console.log(json)
-            )
-    }, [])
+    const dishes = useFetchGet<Array<CardProps>>('http://localhost:3000/dishes');
 
     function handleDisplayChange(mode: string) {
         setDisplayMode(mode);
