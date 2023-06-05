@@ -132,10 +132,10 @@ function HomePage() {
 
             <div className={displayMode}>
                 {
-                    cards.length === 0 && <div>No dishes</div>
+                    !dishes || dishes.length === 0 && <div>No dishes</div>
                 }
-                {
-                    cards.map(cardItem =>
+                {dishes &&
+                    dishes.map(cardItem =>
                         <Card
                             key={cardItem.id}
                             {...cardItem}
