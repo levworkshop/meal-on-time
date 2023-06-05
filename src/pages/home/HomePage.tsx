@@ -138,12 +138,7 @@ function HomePage() {
                     cards.map(cardItem =>
                         <Card
                             key={cardItem.id}
-                            title={cardItem.title}
-                            image={cardItem.image}
-                            description={cardItem.description}
-                            price={cardItem.price}
-                            rating={cardItem.rating}
-                            category={cardItem.category}
+                            {...cardItem}
                             onCategoryChange={handleCategoryChange}
                         >
                             {cardItem.rating === 5 &&
