@@ -3,6 +3,8 @@ import Card, { CardProps, Category } from "../../components/Card";
 import React, { useEffect, useState } from "react";
 import './HomePage.css';
 import { useFetchGet } from "../../hooks/useFetchGet";
+import axios from "axios";
+import { Button, IconButton } from "@mui/material";
 
 // const data: Array<CardProps> = [];
 
@@ -43,6 +45,26 @@ function HomePage() {
     const [cards, setCards] = useState([...data]);
     const [displayMode, setDisplayMode] = useState('grid');
     const dishes = useFetchGet<Array<CardProps>>(`${process.env.REACT_APP_SERVER_URL}dishes`);
+
+    const [exmpleList, setExmpleList] = useState<Array<CardProps>>([]);
+
+    useEffect(() => {
+        // 1. async/await example
+        const loadData = async () => {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}dishes`);
+                setExmpleList(response.data)
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        loadData().catch();
+
+        // 2. simple promise example
+        // axios
+        //     .get(`${process.env.REACT_APP_SERVER_URL}dishes`)
+        //     .then(response => setExmpleList(response.data))
+    }, [])
 
     function handleDisplayChange(mode: string) {
         setDisplayMode(mode);
@@ -87,9 +109,27 @@ function HomePage() {
                 text="Order Delivery and Takaway"
             />
 
+            {/* <Button variant="outlined">Hello World</Button> */}
+
             <div className="d-flex">
                 <div className="px-5">
-                    <button
+                    <IconButton
+                        color="primary"
+                        aria-label="Grid View"
+                        onClick={() => handleDisplayChange('grid')}
+                    >
+                        <i className="bi bi-grid-3x3-gap-fill"></i>
+                    </IconButton>
+
+                    <IconButton
+                        color="primary"
+                        aria-label="List View"
+                        onClick={() => handleDisplayChange('list')}
+                    >
+                        <i className="bi bi-list-ul"></i>
+                    </IconButton>
+
+                    {/* <button
                         onClick={() => handleDisplayChange('grid')}
                         className="btn btn-light mx-1"
                     >
@@ -100,7 +140,7 @@ function HomePage() {
                         className="btn btn-light mx-1"
                     >
                         <i className="bi bi-list-ul"></i>
-                    </button>
+                    </button> */}
                 </div>
 
                 <div className="d-flex align-items-center">
