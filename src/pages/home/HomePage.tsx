@@ -42,7 +42,7 @@ function HomePage() {
     const [search, setSearch] = useState('');
     const [cards, setCards] = useState([...data]);
     const [displayMode, setDisplayMode] = useState('grid');
-    const dishes = useFetchGet<Array<CardProps>>('http://localhost:3000/dishes');
+    const dishes = useFetchGet<Array<CardProps>>(`${process.env.REACT_APP_SERVER_URL}dishes`);
 
     function handleDisplayChange(mode: string) {
         setDisplayMode(mode);

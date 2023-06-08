@@ -16,12 +16,12 @@ function AddDishPage() {
     const [rating, setRating] = useState(1);
     const imageProps = useInputText('');
     const [categoryId, setCategoryId] = useState(0);
-    const categories = useFetchGet<Array<ICategory>>('http://localhost:3000/categories');
+    const categories = useFetchGet<Array<ICategory>>(`${process.env.REACT_APP_SERVER_URL}categories`);
 
     function handleSubmit() {
         // data validation
 
-        fetch('http://localhost:3000/dishes', {
+        fetch(`${process.env.REACT_APP_SERVER_URL}dishes`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

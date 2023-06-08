@@ -8,6 +8,10 @@ import AboutPage from './pages/AboutPage';
 import DishDetails from './pages/DishDetails';
 import AddDishPage from './pages/AddDishPage';
 
+if (process.env.NODE_ENV === 'development') {
+    console.log('your app is running in development mode.');
+}
+
 function App() {
     return (
         <>
@@ -20,7 +24,6 @@ function App() {
                 <Route path="add-dish" element={<AddDishPage />} />
             </Routes>
         </>
-
     );
 }
 
